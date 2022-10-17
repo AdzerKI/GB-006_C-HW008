@@ -214,7 +214,52 @@ System.Console.WriteLine($"{ArrayIntToString(result)}");
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1) */
 
+// создает рандомный трехмерный массив int
+int[,,] RandomArray (int firstArrayQuantity, 
+                    int secondArrayQuantity, 
+                    int thirdArrayQuantity, 
+                    int minimum, 
+                    int maximum) {
+    int[,,] array = new int[firstArrayQuantity, secondArrayQuantity, thirdArrayQuantity];
 
+    int random = 10;
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j <  array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                array[i, j, k] = random++;                
+            }
+        }
+    }
+
+    return array; 
+}
+
+// возвращает строку из двумерного массива int
+string ArrayIntToString(int[,,] arr){
+    string result = string.Empty;
+
+    for(int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {    
+            for (int k = 0; k < arr.GetLength(2); k++)
+            {
+                result = result + $"{arr[i,j,k]} {(i, j, k)} ";                
+            }        
+            result = result + $"\n";
+        }
+    }
+
+    return result;
+}
+
+// создаем массив
+int[,,] matrixOne = RandomArray(2,2,2,0,10);
+System.Console.WriteLine($"{ArrayIntToString(matrixOne)}"); 
 
 /* Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 Например, на выходе получается вот такой массив:
