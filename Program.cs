@@ -8,7 +8,7 @@
 9 5 3 2
 8 4 4 2 */
 
-// создает рандомный двумерный массив int
+/* // создает рандомный двумерный массив int
 int[,] RandomArray (int firstArrayQuantity, int secondArrayQuantity, int minimum, int maximum) {
     int[,] array = new int[firstArrayQuantity, secondArrayQuantity];
 
@@ -62,7 +62,7 @@ for (int i = 0; i < matrix.GetLength(0); i++)
 }
 
 // выводим массив
-System.Console.WriteLine($"{ArrayIntToString(matrix)}"); 
+System.Console.WriteLine($"{ArrayIntToString(matrix)}");  */
 
 
 /* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
@@ -74,7 +74,63 @@ System.Console.WriteLine($"{ArrayIntToString(matrix)}");
 5 2 6 7 
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка*/
 
+// создает рандомный двумерный массив int
+int[,] RandomArray (int firstArrayQuantity, int secondArrayQuantity, int minimum, int maximum) {
+    int[,] array = new int[firstArrayQuantity, secondArrayQuantity];
 
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j <  array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(minimum,maximum+1);
+        }
+    }
+
+    return array; 
+}
+
+// возвращает строку из двумерного массива int
+string ArrayIntToString(int[,] arr){
+    string result = string.Empty;
+
+    for(int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {            
+            result = result + $"{arr[i, j]} ";
+        }
+        result = result + $"\n";
+    }
+
+    return result;
+}
+
+// создаем массив
+int[,] matrix = RandomArray(5,5,0,10);
+
+// выводим массив
+System.Console.WriteLine($"{ArrayIntToString(matrix)}"); 
+System.Console.WriteLine();
+
+    int[] summ = new int[matrix.GetLength(0)];
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        summ[i] = summ[i] + matrix [i, j];
+    }
+}
+
+int low = 0;
+
+for (int i = 0; i < summ.Length; i++)
+{
+    if (summ[low] > summ[i]){
+        low = i;
+    }
+}
+
+System.Console.WriteLine($"Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: {low + 1}");
 
 
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
