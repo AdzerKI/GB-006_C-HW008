@@ -8,7 +8,7 @@
 9 5 3 2
 8 4 4 2 */
 
-/* // создает рандомный двумерный массив int
+// создает рандомный двумерный массив int
 int[,] RandomArray (int firstArrayQuantity, int secondArrayQuantity, int minimum, int maximum) {
     int[,] array = new int[firstArrayQuantity, secondArrayQuantity];
 
@@ -62,7 +62,7 @@ for (int i = 0; i < matrix.GetLength(0); i++)
 }
 
 // выводим массив
-System.Console.WriteLine($"{ArrayIntToString(matrix)}");  */
+System.Console.WriteLine($"{ArrayIntToString(matrix)}"); 
 
 
 /* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
