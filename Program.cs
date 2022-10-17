@@ -133,6 +133,7 @@ for (int i = 0; i < summ.Length; i++)
 System.Console.WriteLine($"Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: {low + 1}");
 
 
+
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 Например, даны 2 матрицы:
 2 4 | 3 4
@@ -141,7 +142,63 @@ System.Console.WriteLine($"Программа считает сумму элем
 18 20
 15 18 */
 
+// создает рандомный двумерный массив int
+int[,] RandomArray (int firstArrayQuantity, int secondArrayQuantity, int minimum, int maximum) {
+    int[,] array = new int[firstArrayQuantity, secondArrayQuantity];
 
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j <  array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(minimum,maximum+1);
+        }
+    }
+
+    return array; 
+}
+
+// возвращает строку из двумерного массива int
+string ArrayIntToString(int[,] arr){
+    string result = string.Empty;
+
+    for(int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {            
+            result = result + $"{arr[i, j]} ";
+        }
+        result = result + $"\n";
+    }
+
+    return result;
+}
+
+// создаем массив
+int[,] matrixOne = RandomArray(2,2,0,10);
+int[,] matrixTwo = RandomArray(2,2,0,10);
+
+// выводим массив
+System.Console.WriteLine($"{ArrayIntToString(matrixOne)}"); 
+System.Console.WriteLine($"{ArrayIntToString(matrixTwo)}"); 
+
+int[,] result = new int[matrixOne.GetLength(0), matrixTwo.GetLength(1)];
+
+if (matrixOne.GetLength(1) == matrixTwo.GetLength(0))
+{
+    for (int i = 0; i < result.GetLength(0); i++)
+    {
+        for (int j = 0; j < result.GetLength(1); j++)
+        {
+            result[i, j] = 0;
+            for (int n = 0; n < matrixOne.GetLength(1); n++)
+            {
+                result[i, j] += matrixOne[i, n] * matrixTwo[n, j];
+            }
+        }
+    }
+}
+
+System.Console.WriteLine($"{ArrayIntToString(result)}"); 
 
 /* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 Массив размером 2 x 2 x 2
